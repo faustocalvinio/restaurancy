@@ -128,6 +128,7 @@ const api = {
   list: async (): Promise<Restaurant[]> => {
     const [, ...data] = await fetch(
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vQfWNbD-0s6nUaJkmmyT52kudVdff4GcUDavpCGcQ7DdmJqiEjCzbKm7ImcabstTwcTsyxqbTwYtOsz/pub?output=csv",
+      {next: {tags: ["restaurants"]}},
     )
       .then((res) => res.text())
       .then((text) => text.split("\n"));
@@ -159,6 +160,18 @@ const api = {
     }
 
     return restaurant;
+  },
+  search: async (query: string): Promise<Restaurant[]> => {
+    // Obtenemos los restaurantes
+    const results = await api.list().then((restaurants) =>
+      // Los filtramos por nombre
+      restaurants.filter((restaurant) =>
+        restaurant.name.toLowerCase().includes(query.toLowerCase()),
+      ),
+    );
+
+    // Los retornamos
+    return results;
   },
 };
 
