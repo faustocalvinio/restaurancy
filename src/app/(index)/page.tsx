@@ -1,12 +1,11 @@
-import Link from "next/link";
 import {redirect} from "next/navigation";
 
 import api from "@/api";
 
-import RestaurantCard from "./components/RestaurantCard";
+import RestaurantCard from "./components/RestaurantCard/RestaurantCard";
 
 export default async function Home({searchParams}: {searchParams: {q?: string}}) {
-  const restaurants = await api.search(searchParams.q!);
+  const restaurants = await api.search(searchParams.q || "");
 
   async function searchAction(formData: FormData) {
     "use server";

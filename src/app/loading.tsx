@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const Loading = () => {
-  return (
-    <div className='text-red-700 text-6xl'>Loading in app root</div>
-  )
+function Loading() {
+  return <div className="text-6xl text-red-700">Loading in app root</div>;
 }
 
-export default Loading
+export default Loading;

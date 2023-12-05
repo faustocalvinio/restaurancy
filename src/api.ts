@@ -1,12 +1,4 @@
-interface Restaurant {
-  id: string;
-  name: string;
-  image: string;
-  description: string;
-  address: string;
-  score: number;
-  ratings: number;
-}
+import {type Restaurant} from "./interfaces/types";
 
 const restaurants: Restaurant[] = [
   {
@@ -165,6 +157,7 @@ const api = {
     // Obtenemos los restaurantes
     const results = await api.list().then((restaurants) =>
       // Los filtramos por nombre
+
       restaurants.filter((restaurant) =>
         restaurant.name.toLowerCase().includes(query.toLowerCase()),
       ),
